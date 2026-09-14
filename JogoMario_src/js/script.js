@@ -6,13 +6,14 @@ const backgroundMusic = document.querySelector('.backgroundMusic');
 const startButton = document.querySelector('.startButton');
 const marioDeathSound = document.querySelector('.marioDeathSound');
 const retryButton = document.querySelector('.retryButton');
+const marioParado = document.querySelector('.marioParado');
 
 let gameStarted = false;
 
 pipe.style.animationPlayState = 'paused';
 clouds.style.animationPlayState = 'paused';
 clouds_2.style.animationPlayState = 'paused';
-
+mario.style.display = 'none';
 
 
 const jump = () => {
@@ -42,7 +43,8 @@ document.addEventListener('keydown', (event) => {
             pipe.style.animationPlayState = 'running';
             clouds.style.animationPlayState = 'running';
             clouds_2.style.animationPlayState = 'running';
-
+            marioParado.style.display = 'none';
+            mario.style.display = 'block';
             startButton.style.display = 'none';
         }
             

@@ -56,12 +56,14 @@
 
 }
 
+.marioParado,
 .mario {
     position: absolute;
     bottom: 0;
     width: 150px;
     z-index: 2;
 }
+
 
 .jump{
     animation: jump-animation 0.8s cubic-bezier(0.25, 0.8, 0.4, 1);

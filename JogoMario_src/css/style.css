@@ -56,7 +56,7 @@
 
 }
 
-.marioParado,
+.idleMario,
 .mario {
     position: absolute;
     bottom: 0;

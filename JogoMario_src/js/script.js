@@ -6,15 +6,9 @@ const backgroundMusic = document.querySelector('.backgroundMusic');
 const startButton = document.querySelector('.startButton');
 const marioDeathSound = document.querySelector('.marioDeathSound');
 const retryButton = document.querySelector('.retryButton');
-const marioParado = document.querySelector('.marioParado');
+const idleMario = document.querySelector('.idleMario');
 
 let gameStarted = false;
-
-pipe.style.animationPlayState = 'paused';
-clouds.style.animationPlayState = 'paused';
-clouds_2.style.animationPlayState = 'paused';
-mario.style.display = 'none';
-
 
 const jump = () => {
 
@@ -29,25 +23,29 @@ const jump = () => {
     }
 }
 
+if (gameStarted == false) {
+    pipe.style.animationPlayState = 'paused';
+    clouds.style.animationPlayState = 'paused';
+    clouds_2.style.animationPlayState = 'paused';
+    mario.style.display = 'none';
+}
 
 document.addEventListener('keydown', (event) => {
 
     if (event.code === 'Space') {
-        
 
-        if (!gameStarted) {
-            gameStarted = true;
+        gameStarted = true;
 
+        if (gameStarted) {
             backgroundMusic.play();
-
             pipe.style.animationPlayState = 'running';
-            clouds.style.animationPlayState = 'running';
-            clouds_2.style.animationPlayState = 'running';
-            marioParado.style.display = 'none';
+            clouds.style.animationPlayState = 'moving';
+            clouds_2.style.animationPlayState = 'moving';
             mario.style.display = 'block';
+            idleMario.style.display = 'none';
             startButton.style.display = 'none';
         }
-            
+
         jump();
     }
 });
@@ -55,14 +53,15 @@ document.addEventListener('keydown', (event) => {
 
 const loop = setInterval(() => {
 
-    if (!gameStarted) return;
-
     const pipePosition = pipe.offsetLeft;
     const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
 
     console.log(marioPosition);
 
     if (pipePosition <= 120 && marioPosition < 80 && pipePosition > 0) {
+
+        backgroundMusic.pause();
+        marioDeathSound.play();
 
         pipe.style.animation = 'none';
         pipe.style.left = `${pipePosition}px`;
@@ -74,9 +73,6 @@ const loop = setInterval(() => {
         mario.style.width = '75px';
         mario.style.marginLeft = '50px';
 
-        backgroundMusic.pause();
-        marioDeathSound.play();
-
         retryButton.style.display = 'block';
 
         const cloudAnimation = clouds.getAnimations()[0];
@@ -85,7 +81,6 @@ const loop = setInterval(() => {
         const cloudAnimation2 = clouds_2.getAnimations()[0];
         cloudAnimation2.updatePlaybackRate(0.2);
 
-        
         clearInterval(loop);
     }
 

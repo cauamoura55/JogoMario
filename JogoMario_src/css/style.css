@@ -23,6 +23,7 @@
     font-family: 'Luckiest Guy', cursive;
     font-size: 40px;
     color: #ff0000;
+    z-index: 4;
 }
 
 .retryButton {

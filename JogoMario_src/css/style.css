@@ -14,11 +14,35 @@
     background: linear-gradient(to top, #c5e5e9 0%, #8ddef7 100%);
 }
 
+.startButton,
+.retryButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 40px;
+    color: #ff0000;
+}
+
+.retryButton {
+    display: none;
+}
+
 .clouds {
     position: absolute;
-    top: 50px;
-    width: 550px;
+    top: 40px;
+    width: 450px;
     animation: cloud-animation 9s linear infinite;
+    animation-delay: -1s; 
+}
+
+.clouds_2 {
+    position: absolute;
+    top: 170px;
+    width: 230px;
+    animation: cloud-animation 10s linear infinite;
+    z-index: 1;
 }
 
 .pipe {
@@ -27,7 +51,7 @@
     width: 80px;
     height: 80px;
 
-    animation: pipe-animation 1.5s linear infinite;
+    animation: pipe-animation 2s linear infinite;
 
 }
 
@@ -35,6 +59,7 @@
     position: absolute;
     bottom: 0;
     width: 150px;
+    z-index: 2;
 }
 
 .jump{
@@ -43,7 +68,7 @@
 
 @keyframes cloud-animation {
     from {
-        right: -550px;
+        right: -800px;
     }
     to {
         right: 100%;
